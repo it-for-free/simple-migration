@@ -1,2 +1,9 @@
 /nbproject/*
 
+/vendor/
+/migrations/
+/tests/
+/tests/_support/
+/tests/_output/
+/tests/functional/
+/phpinfo.php
