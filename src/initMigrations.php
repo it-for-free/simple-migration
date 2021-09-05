@@ -1,19 +1,35 @@
 <?php
 //подключение классов
-require_once ($_SERVER['DOCUMENT_ROOT'].'/DB.php');
-require_once ($_SERVER['DOCUMENT_ROOT'].'/SimpleMigration.php');
+require_once ($_SERVER['DOCUMENT_ROOT'].'/src/DB.php');
+require_once ($_SERVER['DOCUMENT_ROOT'].'/src/Migration.php');
+
+
+/*use \SimpleMigration\DB as Database;
+use \SimpleMigration\Migration as Migrations;*/
+
+/*$DB = new Database();
+$MIGRATIONS = new Migrations($authString, $login, $pass, $migrationsBasePath);*/
+
 $DB = new DB();
 
-require_once ($_SERVER['DOCUMENT_ROOT'].'/db_config.php');
+$host = DB::$host;
+$dbname = DB::$dbname;
+$login = DB::$login;
+$pass = DB::$pass;
 
-$pdoConnection = $DB->makeDatabaseConnection($authString, $login, $pass);
-$MIGRATIONS = new SimpleMigration($pdoConnection, $migrationsBasePath);
+$authString = DB::getAuthString($host, $dbname);
+$migrationsBasePath = $_SERVER['DOCUMENT_ROOT'].'/migrations/';
+
+$MIGRATIONS = new Migration($authString, $login, $pass, $migrationsBasePath);
+
+$migrationsTable = Migration::$migrationsTable;
+
+$createMigrationTable = "CREATE TABLE $migrationsTable (id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, firstname VARCHAR(30) NOT NULL)";
 
 
-$createMigrationTable = "CREATE TABLE iffmigrations (id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, firstname VARCHAR(30) NOT NULL)";
+echo $createMigrationTable;
 
 $MIGRATIONS->init($createMigrationTable);
-
 
 //СОЗДАНИЕ МИГРАЦИЙ
 
@@ -57,6 +73,7 @@ $migrationFileDown = $MIGRATIONS->getFileMigrationName($currentMigrationFullPath
 ?>
 
 
+
 <?php if ($currentMigrationName): ?>
     <div id="migration-folder"><b><?=$currentMigrationName?></b> have successful created!</div>
 <?php endif; ?>
@@ -68,6 +85,7 @@ $migrationFileDown = $MIGRATIONS->getFileMigrationName($currentMigrationFullPath
 <?php if ($migrationFileDown): ?>
     <div id="migration-down"><b><?=$migrationFileDown?></b> DOWN SQL file have successful created!</div>
 <?php endif; ?>
+
 
 
 
