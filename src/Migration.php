@@ -1,19 +1,27 @@
 <?php
 
+namespace ItForFree\SimpleMigration;
 
-class SimpleMigration
+class Migration
 {
-    public static $migrationsTable = 'iffmigrations';
+    protected static $migrationsTable = 'iff_migrations';
 
     public $sqlConnection;
     public $migrationsFolder;
     private $DB;
 
-    public function __construct($pdoObject, $migrationsFolder) {
-        $this->sqlConnection = $pdoObject;
-        $this->migrationsFolder = $migrationsFolder;
-        $this->DB = new DB();
-    }
+ 
+//    public function __construct($pdoObject, $migrationsFolder) {
+//        $this->sqlConnection = $pdoObject;
+//        $this->migrationsFolder = $migrationsFolder;
+//        $this->DB = new DB();
+//    }
+    
+    
+    /**
+     * @TODO - реализовать сигнатуру
+     */
+    public function __construct() {}
 
 
     public function init($request) {
@@ -27,6 +35,7 @@ class SimpleMigration
         $stringFromQuery = (string)$sqlQuery;
         file_put_contents($file, $stringFromQuery);
     }
+   
 
 
     public function getPathName($migrationDirName) {
@@ -82,5 +91,13 @@ class SimpleMigration
         return $migration;
     }
 
+    
+    /**
+     * 
+     * @todo рализовать по задаче
+     */
+    public function getMigrationDirName($baseName) {
+	return $baseName;
+    }
 
 }
