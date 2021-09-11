@@ -15,15 +15,6 @@ class MigrationNameTest extends \Codeception\Test\Unit
     
     protected function _before()
     {
-
-/*        $host = 'localhost';
-        $dbname = 'smvc';
-        $login = 'root';
-        $pass = 'rightway';
-        $migrationsBasePath = $_SERVER['DOCUMENT_ROOT'].'/migrations/';
-        $authString = "mysql:host=$host;dbname=$dbname";*/
-
-
         $host = DB::$host;
         $dbname = DB::$dbname;
         $authString = DB::getAuthString($host, $dbname);
