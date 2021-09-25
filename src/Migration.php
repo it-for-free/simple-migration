@@ -149,9 +149,9 @@ class Migration
      *
      * @todo рализовать по задаче
      */
-    public function getMigrationDirName(string $baseName)
+    public function getMigrationDirName()
     {
-        return $baseName;
+        return 'Davert';
     }
 
     /**
