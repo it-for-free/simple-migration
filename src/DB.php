@@ -1,5 +1,5 @@
 <?php
-//namespace ItForFree\SimpleMigration;
+namespace ItForFree\SimpleMigration;
 
 class DB
 {

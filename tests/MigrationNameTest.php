@@ -1,11 +1,10 @@
 <?php
-require_once './vendor/autoload.php';
-require_once './src/Migration.php';
-require_once './src/DB.php';
+//require_once './vendor/autoload.php';
+//require_once './src/Migration.php';
+//require_once './src/DB.php';
 
-//use ItForFree\SimpleMigration;
-
-
+use ItForFree\SimpleMigration\Migration;
+use ItForFree\SimpleMigration\DB;
 use \Codeception\Stub\Expected;
 
 class MigrationNameTest extends \Codeception\Test\Unit
@@ -78,6 +77,16 @@ class MigrationNameTest extends \Codeception\Test\Unit
         //проверка правильности названия файла миграции
         $this->assertTrue($testingFile);
     }
+    
+    /**
+     * Общая схема проверки - шаблон для getUpName()
+     */
+    public function testMigrationFileDown()
+    {
+        $upName = Migration::getUpName('add user');
+	$testingFile = boolval(preg_match($patternFile, $upName, $matches));
+	
+    }
 
 
    // public function testMock() {
@@ -93,26 +102,4 @@ class MigrationNameTest extends \Codeception\Test\Unit
         //$this->assertEquals('Davert', $userName);
    // }
 
-    public function testPDO() {
-        $host = 'localhost';
-        $dbname = 'smvc';
-
-        $authString = "mysql:host=$host;dbname=$dbname";
-        $login = 'root';
-        $pass = 'rightway';
-
-
-        $mockPDO = $this->construct('PDO', [
-            'dsn' => $authString,
-            'username' => $login,
-            'password' => $pass
-            ]
-        );
-
-        //Проверяем есть ли таблица в базе данных
-        $result = $mockPDO->query("SELECT 1 FROM iff_migrations LIMIT 1");
-        $result = boolval($result);
-        $this->assertTrue($result);
-
-    }
 }

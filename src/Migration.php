@@ -1,5 +1,5 @@
 <?php
-//namespace ItForFree\SimpleMigration;
+namespace ItForFree\SimpleMigration;
 
 class Migration
 {
@@ -32,7 +32,7 @@ class Migration
     public function __construct(string $dbAuthString, string $dbLogin, string $dbPass, $migrationsFolder = false)
     {
         try {
-            $this->pdo = new PDO($dbAuthString, $dbLogin, $dbPass);
+            $this->pdo = new \PDO($dbAuthString, $dbLogin, $dbPass);
 
             if ($migrationsFolder) {
                 $this->migrationsFolder = $migrationsFolder;
@@ -155,7 +155,8 @@ class Migration
     }
 
     /**
-     * получение имени папки миграции в нужном формате
+     * Получение имени папки миграции в нужном формате
+     * 
      * @param string $str
      * @return string
      */
@@ -169,7 +170,8 @@ class Migration
     }
 
     /**
-     * получение имени файла миграци наката в нужном формате
+     * Получение имени файла миграци наката в нужном формате
+     * 
      * @param string $str
      * @return string
      */
@@ -183,7 +185,8 @@ class Migration
     }
 
     /**
-     * получение имени файла миграци удаления в нужном формате
+     *  Получение имени файла миграци удаления в нужном формате
+     * 
      * @param string $str
      * @return string
      */
