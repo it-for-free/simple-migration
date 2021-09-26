@@ -19,14 +19,14 @@ class MigrationNameTest extends \Codeception\Test\Unit
     
     protected function _before()
     {
-/*        $host = DB::$host;
+        $host = DB::$host;
         $dbname = DB::$dbname;
         $authString = DB::getAuthString($host, $dbname);
         $login = DB::$login;
-        $pass = DB::$pass;*/
+        $pass = DB::$pass;
 
-/*        $this->migration = new Migration($authString, $login, $pass);
-        $this->migrationBaseName = Migration::$migrationBaseName;*/
+       $this->migration = new Migration($authString, $login, $pass);
+       $this->migrationBaseName = Migration::$migrationBaseName;
     }
 
     protected function _after()
@@ -45,7 +45,7 @@ class MigrationNameTest extends \Codeception\Test\Unit
 
     }*/
 
-/*    public function testMigrationFolder()
+    public function testMigrationFolder()
     {
         $folder = $this->migration->makePathName($this->migrationBaseName);
 
@@ -56,9 +56,9 @@ class MigrationNameTest extends \Codeception\Test\Unit
         $this->assertTrue($testingFolder);
         //  доделать
         // + проверить что первая часть строки является таймстэмпом
-    }*/
+    }
 
-/*    public function testMigrationFileUp()
+    public function testMigrationFileUp()
     {
         $upFile = $this->migration->makeUpMigrationFile($this->migrationBaseName);
 
@@ -67,9 +67,9 @@ class MigrationNameTest extends \Codeception\Test\Unit
 
         //проверка правильности названия папки
         $this->assertTrue($testingFile);
-    }*/
+    }
 
-/*    public function testMigrationFileDown()
+    public function testMigrationFileDown()
     {
         $downFile = $this->migration->makeUpMigrationFile($this->migrationBaseName);
         $patternFile = '/^[a-z]{3,}[a-z_]{1,}\.(up|down)\.sql$/';
@@ -77,7 +77,7 @@ class MigrationNameTest extends \Codeception\Test\Unit
 
         //проверка правильности названия файла миграции
         $this->assertTrue($testingFile);
-    }*/
+    }
 
 
    // public function testMock() {
