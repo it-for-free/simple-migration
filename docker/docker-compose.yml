@@ -1,0 +1,16 @@
+version: '3.9'
+services:
+  app:
+    build: 
+        context: .
+        dockerfile: Dockerfile
+    container_name: simple-migrations_php
+    working_dir: /var/www/
+    volumes:
+      - '../:/var/www'
+      - ./config/php-fpm/docker-php-ext-xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+      
+ 
+
